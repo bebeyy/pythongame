@@ -118,19 +118,17 @@ def check_win(players, board):
 
 
 if __name__ == '__main__':
-    play_game = True
+    value = ''
+    while value.lower() not in ['yes', 'no', 'y', 'n']:
+        value = raw_input("Voulez vous jouer aux Morpions? [Y/N]")
+    play_game = True if value.lower() in ['yes', 'y'] else False
     while play_game:
-        value = ''
-        while value.lower() not in ['yes', 'no', 'y', 'n']:
-            value = raw_input("Voulez vous jouer aux Morpions? [Y/N]")
-        play_game = True if value.lower in ['yes', 'y'] else False
         players, board = init_game()
         print '\n'
         print_players(players)
         print '\n'
         print_init_board()
-        print '\n'
-        print "La partie de morpions va démarrer."
+        print "\nLa partie de morpions va démarrer."
 
         game_finished = False
         round_count = 0
@@ -140,4 +138,8 @@ if __name__ == '__main__':
             round_count += 1
             game_finished = check_game(players, board)
 
-        print "La partie est fini."
+        print "La partie est fini.\n"
+        value = ''
+        while value.lower() not in ['yes', 'no', 'y', 'n']:
+            value = raw_input("Voulez vous refaire une partie? [Y/N]")
+        play_game = True if value.lower()in ['yes', 'y'] else False
