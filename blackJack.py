@@ -47,6 +47,11 @@ class Deck(object):
                 paquet.append({'suite': suite, 'carte': carte_nb, 'valeur': carte})
         self.jeu = paquet
 
+    def pioche_carte(self):
+        choix = randint(0, 54)
+        carte = self.paquet[choix]
+        return carte
+
 
 def print_board():
     print 'votre main est : ', sam.hand[0]['carte'],\
@@ -63,14 +68,10 @@ def print_sum():
 
 
 def init_game(player, dealer):
-    choix = randint(0, 54)
-    sam.hand[0] = deck.jeu[choix]
-    choix = randint(0, 54)
-    dealer.hand[0] = deck.jeu[choix]
-    choix = randint(0, 54)
-    sam.hand[1] = deck.jeu[choix]
-    choix = randint(0, 54)
-    dealer.hand[1] = deck.jeu[choix]
+    sam.hand[0] = deck.pioche_carte()
+    dealer.hand[0] = deck.pioche_carte()
+    sam.hand[1] = deck.pioche_carte()
+    dealer.hand[1] = deck.pioche_carte()
 
 
 def stand_or_hit():
@@ -80,22 +81,19 @@ def stand_or_hit():
         print('\n')
     if value.lower() in ['yes', 'y']:
         answer = True
-        return answer
     else:
         answer = False
-        return answer
+    return answer
 
 
 def test_win(player, dealer):
     if dealer.sum == sam.sum == 21:
         condition = 1
-        return condition
     elif dealer <= sam.sum:
         condition = 2
-        return condition
     elif dealer >= sam.sum:
         condition = 3
-        return condition
+    return condition
 
 
 def update_sum(player, dealer):
@@ -237,7 +235,7 @@ if __name__ == '__main__':
             while value.lower() not in ['yes', 'no', 'y', 'n']:
                 value = raw_input("Voulez vous en remettre? [Y/N]")
                 print('\n')
-            if value.lower()in ['yes', 'y']:
+            if value.lower() in ['yes', 'y']:
                 amount = int(raw_input('combien voulez vous ajouter ?'))
                 print('\n')
                 sam.add_money(amount)
@@ -246,4 +244,4 @@ if __name__ == '__main__':
         value = ''
         while value.lower() not in ['yes', 'no', 'y', 'n']:
             value = raw_input("Voulez vous refaire une manche? [Y/N]")
-        play_game = True if value.lower()in ['yes', 'y'] else False
+        play_game = True if value.lower() in ['yes', 'y'] else False
