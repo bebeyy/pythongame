@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+# Bertrand Yvernault
 
 INIT_BOARD = {1: None, 2: None, 3: None,
               4: None, 5: None, 6: None,
